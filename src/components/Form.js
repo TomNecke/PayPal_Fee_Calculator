@@ -1,21 +1,23 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 
 
 export default function () {
 
-    const [inputNum, setInputNum] = useState(null);
     const [resultSend, setResultSend] = useState(null);
     const [resultReceive, setResultReceive] = useState(null);
     const [type, setType] = useState("sendRadio");
     const [feeRate, setFeeRate] = useState("0");
+    const inputNumber = useRef(null);
+    const inputFeeRate = useRef(0);
 
     const delay = ms => new Promise(res => setTimeout(res, ms));
 
     const fee = [{ Gebühr: 2.49, Festgebühr: 0.35 }, { Gebühr: 0.00, Festgebühr: 0.00 }, { Gebühr: 1.50, Festgebühr: 0.35 }, { Gebühr: 10.00, Festgebühr: 0.10 }, { Gebühr: 0.90, Festgebühr: 0.00 }, { Gebühr: 2.49, Festgebühr: 0.35 }, { Gebühr: 2.19, Festgebühr: 0.35 }, { Gebühr: 1.99, Festgebühr: 0.35 }, { Gebühr: 1.49, Festgebühr: 0.35 }]
 
     const handleSubmit = async (event) => {
-        //await delay(1000);
-        let input = Number.parseInt(inputNum)
+        let input = Number.parseInt(inputNumber.current.value)
+        console.log(inputFeeRate.currentvalue);
+        
 
         let sendOutput = (input - ((input / 100 * fee[feeRate].Gebühr + fee[feeRate].Festgebühr) * 100) / 100).toFixed(2)
         let receiveOutput = (Math.ceil(((input / (1 - (fee[feeRate].Gebühr / 100))) + fee[feeRate].Festgebühr) * 100) / 100).toFixed(2)
@@ -24,7 +26,6 @@ export default function () {
         setResultReceive(receiveOutput)
 
     }
-
     return (
         <div>
             <h1>PayPal Gebührenrechner</h1>
@@ -40,11 +41,9 @@ export default function () {
                     </div>
                 </fieldset>
                 <label htmlFor="inputNum">Betrag:</label>
-                <input id='inputNum' type='number' onChange={(e) => {
-                    setInputNum(e.target.value);
-                }} />
+                <input id='inputNum' type='number' ref={inputNumber} />
                 <label htmlFor='selectFeeRate'>Art der Zahlung</label>
-                <select name='feeRate' id='selectFeeRate' onChange={(e) => { setFeeRate(e.target.value) }}>
+                <select name='feeRate' id='selectFeeRate' onChange={(e) => { setFeeRate(e.target.value) }} ref={inputFeeRate}>
                     <option value="0">Waren oder Dienstleistungen bezahlen</option>
                     <option value="1">Zahlung an Freunde und Familie</option>
                     <option value="2">Spenden sammeln</option>
@@ -61,6 +60,7 @@ export default function () {
                 {type == "sendRadio" ? <p>Betrag senden: {resultSend}</p> : <p>Betrag empfangen: {resultReceive}</p>}
                 <p>Gebührenrate: {fee[feeRate].Gebühr}</p>
                 <p>Festgebühr: {fee[feeRate].Festgebühr}</p>
+                <h3>devInfo</h3>
             </div>
         </div>
     )
