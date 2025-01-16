@@ -14,14 +14,14 @@ export default function () {
     const fee = [{ Gebühr: 2.49, Festgebühr: 0.35 }, { Gebühr: 0.00, Festgebühr: 0.00 }, { Gebühr: 1.50, Festgebühr: 0.35 }, { Gebühr: 10.00, Festgebühr: 0.10 }, { Gebühr: 0.90, Festgebühr: 0.00 }, { Gebühr: 2.49, Festgebühr: 0.35 }, { Gebühr: 2.19, Festgebühr: 0.35 }, { Gebühr: 1.99, Festgebühr: 0.35 }, { Gebühr: 1.49, Festgebühr: 0.35 }]
 
     const handleSubmit = async (event) => {
-        await delay(1000);
+        //await delay(1000);
         let input = Number.parseInt(inputNum)
 
-        let sendOutput = input - (input / 100 * fee[feeRate].Gebühr + fee[feeRate].Festgebühr)
-        let receiveOutput = (input / (1 - (fee[feeRate].Gebühr / 100))) + 0.35
+        let sendOutput = (input - ((input / 100 * fee[feeRate].Gebühr + fee[feeRate].Festgebühr) * 100) / 100).toFixed(2)
+        let receiveOutput = (Math.ceil(((input / (1 - (fee[feeRate].Gebühr / 100))) + fee[feeRate].Festgebühr) * 100) / 100).toFixed(2)
 
-        setResultSend(sendOutput.toFixed(2))
-        setResultReceive(receiveOutput.toFixed(2))
+        setResultSend(sendOutput)
+        setResultReceive(receiveOutput)
 
     }
 
