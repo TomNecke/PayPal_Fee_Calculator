@@ -8,19 +8,15 @@ export default function () {
     const [type, setType] = useState("sendRadio");
     const [feeRate, setFeeRate] = useState("0");
     const inputNumber = useRef(null);
-    const inputFeeRate = useRef(0);
-
-    const delay = ms => new Promise(res => setTimeout(res, ms));
+    const inputFeeRate = useRef("0");
 
     const fee = [{ Gebühr: 2.49, Festgebühr: 0.35 }, { Gebühr: 0.00, Festgebühr: 0.00 }, { Gebühr: 1.50, Festgebühr: 0.35 }, { Gebühr: 10.00, Festgebühr: 0.10 }, { Gebühr: 0.90, Festgebühr: 0.00 }, { Gebühr: 2.49, Festgebühr: 0.35 }, { Gebühr: 2.19, Festgebühr: 0.35 }, { Gebühr: 1.99, Festgebühr: 0.35 }, { Gebühr: 1.49, Festgebühr: 0.35 }]
 
     const handleSubmit = async (event) => {
         let input = Number.parseInt(inputNumber.current.value)
-        console.log(inputFeeRate.currentvalue);
-        
 
-        let sendOutput = (input - ((input / 100 * fee[feeRate].Gebühr + fee[feeRate].Festgebühr) * 100) / 100).toFixed(2)
-        let receiveOutput = (Math.ceil(((input / (1 - (fee[feeRate].Gebühr / 100))) + fee[feeRate].Festgebühr) * 100) / 100).toFixed(2)
+        let sendOutput = (input - ((input / 100 * fee[inputFeeRate.current.value].Gebühr + fee[inputFeeRate.current.value].Festgebühr) * 100) / 100).toFixed(2)
+        let receiveOutput = (Math.ceil(((input / (1 - (fee[inputFeeRate.current.value].Gebühr / 100))) + fee[inputFeeRate.current.value].Festgebühr) * 100) / 100).toFixed(2)
 
         setResultSend(sendOutput)
         setResultReceive(receiveOutput)
