@@ -7,16 +7,13 @@ export default function () {
     const [resultSend, setResultSend] = useState(null);
     const [resultReceive, setResultReceive] = useState(null);
     const [type, setType] = useState("sendRadio");
-    const [feeRate, setFeeRate] = useState("1");
+    const [feeRate, setFeeRate] = useState("0");
 
-    const fee = ["2.49% + 0.35 €", "0.00% + 0.00 €", "1.50% + 0.35 €", "10.00% + 0.10 €", "0.90% + 0.00 €", "2.49% + 0.35 €", "2.19% + 0.35 €", "1.99% + 0.35 €", "1.49% + 0.35 €"]
+    const fee = [{ Gebühr: 2.49, Festgebühr: 0.35 }, { Gebühr: 0.00, Festgebühr: 0.00 }, { Gebühr: 1.50, Festgebühr: 0.35 }, { Gebühr: 10.00, Festgebühr: 0.10 }, { Gebühr: 0.90, Festgebühr: 0.00 }, { Gebühr: 2.49, Festgebühr: 0.35 }, { Gebühr: 2.19, Festgebühr: 0.35 }, { Gebühr: 1.99, Festgebühr: 0.35 }, { Gebühr: 1.49, Festgebühr: 0.35 }]
 
     const handleSubmit = (event) => {
         event.preventDefault()
         let input = Number.parseInt(inputNum)
-
-        
-
 
     }
 
@@ -24,11 +21,10 @@ export default function () {
         <div>
             <h1>PayPal Gebührenrechner</h1>
             <form onSubmit={handleSubmit}>
-                <fieldset onChange={(e) => {setType(e.target.value)}}>
-                    <legend>Type</legend>
+                <fieldset onChange={(e) => { setType(e.target.value) }} className='radioSendReceive'>
                     <div>
                         <label htmlFor="sendRadio">Geld senden</label>
-                        <input type='radio' id='sendRadio' value="sendRadio" name='selectCalc' defaultChecked/>
+                        <input type='radio' id='sendRadio' value="sendRadio" name='selectCalc' defaultChecked />
                     </div>
                     <div>
                         <label htmlFor="receiveRadio">Geld empfangen</label>
@@ -40,16 +36,16 @@ export default function () {
                     setInputNum(e.target.value);
                 }} />
                 <label htmlFor='selectFeeRate'>Art der Zahlung</label>
-                <select name='feeRate' id='selectFeeRate' onChange={(e) => {setFeeRate(e.target.value)}}>
-                    <option value="1">Waren oder Dienstleistungen bezahlen</option>
-                    <option value="2">Zahlung an Freunde und Familie</option>
-                    <option value="3">Spenden sammeln</option>
-                    <option value="4">Mikrozahlung</option>
-                    <option value="5">Zahlung mit QR-Code</option>
-                    <option value="6">{"Händlerkonditionen < 2.000 €"}</option>
-                    <option value="7">{"Händlerkonditionen 2.000 - 5.000 €"}</option>
-                    <option value="8">{"Händlerkonditionen 5.000 - 25.000 €"}</option>
-                    <option value="9">{"Händlerkonditionen > 25.000 €"}</option>
+                <select name='feeRate' id='selectFeeRate' onChange={(e) => { setFeeRate(e.target.value) }}>
+                    <option value="0">Waren oder Dienstleistungen bezahlen</option>
+                    <option value="1">Zahlung an Freunde und Familie</option>
+                    <option value="2">Spenden sammeln</option>
+                    <option value="3">Mikrozahlung</option>
+                    <option value="4">Zahlung mit QR-Code</option>
+                    <option value="5">{"Händlerkonditionen < 2.000 €"}</option>
+                    <option value="6">{"Händlerkonditionen 2.000 - 5.000 €"}</option>
+                    <option value="7">{"Händlerkonditionen 5.000 - 25.000 €"}</option>
+                    <option value="8">{"Händlerkonditionen > 25.000 €"}</option>
                 </select>
                 <input type='submit' value="Berechnen" />
             </form>
@@ -57,7 +53,8 @@ export default function () {
                 <h2>Ergebnis</h2>
                 <p>Betrag senden: {resultSend}</p>
                 <p>Betrag empfangen: {resultReceive}</p>
-                <p>Gebührenrate: {fee[feeRate-1]}</p>
+                <p>Gebührenrate: {fee[feeRate].Gebühr}</p>
+                <p>Festgebühr: {fee[feeRate].Festgebühr}</p>
                 <h3>devInfo</h3>
                 <p>inputNum: {inputNum}</p>
                 <p>type: {type}</p>

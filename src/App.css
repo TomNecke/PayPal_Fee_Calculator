@@ -1,1 +1,4 @@
-
+.radioSendReceive {
+    border: none;
+    display: flex;
+}
