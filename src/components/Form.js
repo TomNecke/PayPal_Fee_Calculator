@@ -3,8 +3,8 @@ import React, { useRef, useState } from 'react'
 
 export default function () {
 
-    const [resultSend, setResultSend] = useState(null);
-    const [resultReceive, setResultReceive] = useState(null);
+    const [resultSend, setResultSend] = useState(0);
+    const [resultReceive, setResultReceive] = useState(0);
     const [type, setType] = useState("sendRadio");
     const [feeRate, setFeeRate] = useState("0");
     const inputNumber = useRef(null);
@@ -14,6 +14,7 @@ export default function () {
 
     const handleSubmit = async (event) => {
         let input = Number.parseInt(inputNumber.current.value)
+        
 
         let sendOutput = (input - ((input / 100 * fee[inputFeeRate.current.value].Gebühr + fee[inputFeeRate.current.value].Festgebühr) * 100) / 100).toFixed(2)
         let receiveOutput = (Math.ceil(((input / (1 - (fee[inputFeeRate.current.value].Gebühr / 100))) + fee[inputFeeRate.current.value].Festgebühr) * 100) / 100).toFixed(2)
