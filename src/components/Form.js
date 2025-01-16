@@ -15,6 +15,9 @@ export default function () {
         event.preventDefault()
         let input = Number.parseInt(inputNum)
 
+        setResultSend(input - (input / 100 * fee[feeRate].Gebühr + fee[feeRate].Festgebühr))
+        setResultReceive()
+
     }
 
     return (
@@ -51,8 +54,7 @@ export default function () {
             </form>
             <div>
                 <h2>Ergebnis</h2>
-                <p>Betrag senden: {resultSend}</p>
-                <p>Betrag empfangen: {resultReceive}</p>
+                {type == "sendRadio" ? <p>Betrag senden: {resultSend}</p> : <p>Betrag empfangen: {resultReceive}</p>}
                 <p>Gebührenrate: {fee[feeRate].Gebühr}</p>
                 <p>Festgebühr: {fee[feeRate].Festgebühr}</p>
                 <h3>devInfo</h3>
