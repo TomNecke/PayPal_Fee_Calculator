@@ -8,14 +8,14 @@ export default function () {
     const [resultReceive, setResultReceive] = useState(null);
     const [type, setType] = useState("sendRadio");
     const [feeRate, setFeeRate] = useState("1");
-    const [rateOneResult, setRateOneResult] = useState(null);
 
     const fee = ["2.49% + 0.35 €", "0.00% + 0.00 €", "1.50% + 0.35 €", "10.00% + 0.10 €", "0.90% + 0.00 €", "2.49% + 0.35 €", "2.19% + 0.35 €", "1.99% + 0.35 €", "1.49% + 0.35 €"]
 
     const handleSubmit = (event) => {
         event.preventDefault()
+        let input = Number.parseInt(inputNum)
+
         
-        let result = Number.parseInt(inputNum)
 
 
     }
