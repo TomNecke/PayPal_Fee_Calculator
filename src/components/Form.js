@@ -85,11 +85,11 @@ export default function () {
             <form onChange={handleSubmit}>
                 <fieldset onChange={(e) => { setType(e.target.value) }} className='radioSendReceive'>
                     <div>
-                        <label htmlFor="sendRadio">Geld senden</label>
+                        <label htmlFor="sendRadio">Gebühren berechnen</label>
                         <input type='radio' id='sendRadio' value="sendRadio" name='selectCalc' defaultChecked />
                     </div>
                     <div>
-                        <label htmlFor="receiveRadio">Geld empfangen</label>
+                        <label htmlFor="receiveRadio">Endsumme berechnen</label>
                         <input type='radio' id='receiveRadio' value="receiveRadio" name='selectCalc' />
                     </div>
                 </fieldset>
