@@ -32,7 +32,6 @@ export default function () {
         setResultReceive(receiveOutput)
 
     }
-    console.log(inputNumber);
     
     return (
         <div>
