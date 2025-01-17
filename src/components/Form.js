@@ -15,8 +15,10 @@ export default function () {
     const handleSubmit = async (event) => {
         let input = Number.parseInt(inputNumber.current.value)
         
-
+        // let sendFee = ((input / 100 * fee[inputFeeRate.current.value].Gebühr + fee[inputFeeRate.current.value].Festgebühr) * 100) / 100
+        
         let sendOutput = (input - ((input / 100 * fee[inputFeeRate.current.value].Gebühr + fee[inputFeeRate.current.value].Festgebühr) * 100) / 100).toFixed(2)
+        
         let receiveOutput = (Math.ceil(((input / (1 - (fee[inputFeeRate.current.value].Gebühr / 100))) + fee[inputFeeRate.current.value].Festgebühr) * 100) / 100).toFixed(2)
 
         setResultSend(sendOutput)
@@ -37,7 +39,7 @@ export default function () {
                         <input type='radio' id='receiveRadio' value="receiveRadio" name='selectCalc' />
                     </div>
                 </fieldset>
-                <label htmlFor="inputNum">Betrag:</label>
+                <label htmlFor="inputNum">Betrag in €:</label>
                 <input id='inputNum' type='number' ref={inputNumber} />
                 <label htmlFor='selectFeeRate'>Art der Zahlung</label>
                 <select name='feeRate' id='selectFeeRate' onChange={(e) => { setFeeRate(e.target.value) }} ref={inputFeeRate}>
@@ -54,9 +56,9 @@ export default function () {
             </form>
             <div>
                 <h2>Ergebnis</h2>
-                {type == "sendRadio" ? <p>Betrag senden: {resultSend}</p> : <p>Betrag empfangen: {resultReceive}</p>}
-                <p>Gebührenrate: {fee[feeRate].Gebühr}</p>
-                <p>Festgebühr: {fee[feeRate].Festgebühr}</p>
+                {type == "sendRadio" ? <p>Betrag: {resultSend} €</p> : <p>Betrag: {resultReceive} €</p>}
+                <p>Gebührenrate: {fee[feeRate].Gebühr} %</p>
+                <p>Festgebühr: {fee[feeRate].Festgebühr} €</p>
                 <h3>devInfo</h3>
             </div>
         </div>
