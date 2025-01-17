@@ -7,24 +7,33 @@ export default function () {
     const [resultReceive, setResultReceive] = useState(0);
     const [type, setType] = useState("sendRadio");
     const [feeRate, setFeeRate] = useState("0");
+    const [sendFee, setSendFee] = useState(0);
+    const [receiveFee, setReceiveFee] = useState(0);
     const inputNumber = useRef(null);
     const inputFeeRate = useRef("0");
+    
 
     const fee = [{ Gebühr: 2.49, Festgebühr: 0.35 }, { Gebühr: 0.00, Festgebühr: 0.00 }, { Gebühr: 1.50, Festgebühr: 0.35 }, { Gebühr: 10.00, Festgebühr: 0.10 }, { Gebühr: 0.90, Festgebühr: 0.00 }, { Gebühr: 2.49, Festgebühr: 0.35 }, { Gebühr: 2.19, Festgebühr: 0.35 }, { Gebühr: 1.99, Festgebühr: 0.35 }, { Gebühr: 1.49, Festgebühr: 0.35 }]
 
     const handleSubmit = async (event) => {
         let input = Number.parseInt(inputNumber.current.value)
         
-        // let sendFee = ((input / 100 * fee[inputFeeRate.current.value].Gebühr + fee[inputFeeRate.current.value].Festgebühr) * 100) / 100
+        let sendFeeCalc = ((input / 100 * fee[inputFeeRate.current.value].Gebühr + fee[inputFeeRate.current.value].Festgebühr) * 100) / 100
         
-        let sendOutput = (input - ((input / 100 * fee[inputFeeRate.current.value].Gebühr + fee[inputFeeRate.current.value].Festgebühr) * 100) / 100).toFixed(2)
+        let receiveFeeCalc = 0
+
+        let sendOutput = (input - sendFeeCalc).toFixed(2)
         
         let receiveOutput = (Math.ceil(((input / (1 - (fee[inputFeeRate.current.value].Gebühr / 100))) + fee[inputFeeRate.current.value].Festgebühr) * 100) / 100).toFixed(2)
 
+        setSendFee(sendFeeCalc.toFixed(2))
+        setReceiveFee(receiveFeeCalc.toFixed(2))
         setResultSend(sendOutput)
         setResultReceive(receiveOutput)
 
     }
+    console.log(inputNumber);
+    
     return (
         <div>
             <h1>PayPal Gebührenrechner</h1>
@@ -56,7 +65,10 @@ export default function () {
             </form>
             <div>
                 <h2>Ergebnis</h2>
-                {type == "sendRadio" ? <p>Betrag: {resultSend} €</p> : <p>Betrag: {resultReceive} €</p>}
+                {inputNumber.current && inputNumber.current.value && <div>
+                    {type == "sendRadio" ? <p>Betrag: {resultSend} €</p> : <p>Betrag: {resultReceive} €</p>}
+                    {type == "sendRadio" ? <p>Gebühren: {sendFee} €</p> : <p>Gebühren: {receiveFee} €</p>}
+                </div>}
                 <p>Gebührenrate: {fee[feeRate].Gebühr} %</p>
                 <p>Festgebühr: {fee[feeRate].Festgebühr} €</p>
                 <h3>devInfo</h3>
