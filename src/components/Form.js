@@ -23,7 +23,7 @@ export default function Form() {
             Titel: "Zahlung an Freunde und Familie",
             Gebühr: 0.00,
             Festgebühr: 0.00
-        }, 
+        },
         {
             Titel: "Spenden sammeln",
             Gebühr: 1.50,
@@ -62,23 +62,21 @@ export default function Form() {
     ]
 
     const handleSubmit = async (event) => {
-        let input = Number.parseInt(inputNumber.current.value)
+        let input = Number.parseFloat(inputNumber.current.value)
+
 
         let sendFeeCalc = ((input / 100 * fee[inputFeeRate.current.value].Gebühr + fee[inputFeeRate.current.value].Festgebühr) * 100) / 100
-
-        let receiveFeeCalc = 0
-
         let sendOutput = (input - sendFeeCalc).toFixed(2)
 
         let receiveOutput = (Math.ceil(((input / (1 - (fee[inputFeeRate.current.value].Gebühr / 100))) + fee[inputFeeRate.current.value].Festgebühr) * 100) / 100).toFixed(2)
+        let receiveFeeCalc = receiveOutput - input
 
         setSendFee(sendFeeCalc.toFixed(2))
         setReceiveFee(receiveFeeCalc.toFixed(2))
         setResultSend(sendOutput)
         setResultReceive(receiveOutput)
 
-    }
-
+    } 
     return (
         <div>
             <h1>PayPal Gebührenrechner</h1>
@@ -95,6 +93,7 @@ export default function Form() {
                 </fieldset>
                 <label htmlFor="inputNum">Betrag in €:</label>
                 <input id='inputNum' type='number' ref={inputNumber} />
+                
                 <label htmlFor='selectFeeRate'>Art der Zahlung</label>
                 <select name='feeRate' id='selectFeeRate' onChange={(e) => { setFeeRate(e.target.value) }} ref={inputFeeRate}>
                     <option value="0">{fee[0].Titel}</option>
