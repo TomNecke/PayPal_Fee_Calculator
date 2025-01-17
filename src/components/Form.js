@@ -11,8 +11,7 @@ export default function Form() {
     const [receiveFee, setReceiveFee] = useState(0);
     const inputNumber = useRef(null);
     const inputFeeRate = useRef("0");
-
-
+    
     const fee = [
         {
             Titel: "Waren oder Dienstleistungen bezahlen",
@@ -92,7 +91,7 @@ export default function Form() {
                     </div>
                 </fieldset>
                 <label htmlFor="inputNum">Betrag in €:</label>
-                <input id='inputNum' type='number' ref={inputNumber} />
+                <input id='inputNum' type='number'min="0.00" step="0.01" ref={inputNumber} />
                 
                 <label htmlFor='selectFeeRate'>Art der Zahlung</label>
                 <select name='feeRate' id='selectFeeRate' onChange={(e) => { setFeeRate(e.target.value) }} ref={inputFeeRate}>

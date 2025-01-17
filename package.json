@@ -1,5 +1,6 @@
 {
   "name": "paypal_fee_calculator",
+  "author": "Tom Necke",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
