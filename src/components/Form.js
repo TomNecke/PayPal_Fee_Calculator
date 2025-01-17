@@ -11,19 +11,64 @@ export default function () {
     const [receiveFee, setReceiveFee] = useState(0);
     const inputNumber = useRef(null);
     const inputFeeRate = useRef("0");
-    
 
-    const fee = [{ Gebühr: 2.49, Festgebühr: 0.35 }, { Gebühr: 0.00, Festgebühr: 0.00 }, { Gebühr: 1.50, Festgebühr: 0.35 }, { Gebühr: 10.00, Festgebühr: 0.10 }, { Gebühr: 0.90, Festgebühr: 0.00 }, { Gebühr: 2.49, Festgebühr: 0.35 }, { Gebühr: 2.19, Festgebühr: 0.35 }, { Gebühr: 1.99, Festgebühr: 0.35 }, { Gebühr: 1.49, Festgebühr: 0.35 }]
+
+    const fee = [
+        {
+            Gebühr: 2.49,
+            Festgebühr: 0.35,
+            Titel: "Waren oder Dienstleistungen bezahlen"
+        },
+        {
+            Gebühr: 0.00,
+            Festgebühr: 0.00,
+            Titel: "Zahlung an Freunde und Familie"
+        }, {
+            Gebühr: 1.50,
+            Festgebühr: 0.35,
+            Titel: "Spenden sammeln"
+        },
+        {
+            Gebühr: 10.00,
+            Festgebühr: 0.10,
+            Titel: "Mikrozahlung"
+        },
+        {
+            Gebühr: 0.90,
+            Festgebühr: 0.00,
+            Titel: "Zahlung mit QR-Code"
+        },
+        {
+            Gebühr: 2.49,
+            Festgebühr: 0.35,
+            Titel: "Händlerkonditionen < 2.000 €"
+        },
+        {
+            Gebühr: 2.19,
+            Festgebühr: 0.35,
+            Titel: "Händlerkonditionen 2.000 - 5.000 €"
+        },
+        {
+            Gebühr: 1.99,
+            Festgebühr: 0.35,
+            Titel: "Händlerkonditionen 5.000 - 25.000 €"
+        },
+        {
+            Gebühr: 1.49,
+            Festgebühr: 0.35,
+            Titel: "Händlerkonditionen > 25.000 €"
+        }
+    ]
 
     const handleSubmit = async (event) => {
         let input = Number.parseInt(inputNumber.current.value)
-        
+
         let sendFeeCalc = ((input / 100 * fee[inputFeeRate.current.value].Gebühr + fee[inputFeeRate.current.value].Festgebühr) * 100) / 100
-        
+
         let receiveFeeCalc = 0
 
         let sendOutput = (input - sendFeeCalc).toFixed(2)
-        
+
         let receiveOutput = (Math.ceil(((input / (1 - (fee[inputFeeRate.current.value].Gebühr / 100))) + fee[inputFeeRate.current.value].Festgebühr) * 100) / 100).toFixed(2)
 
         setSendFee(sendFeeCalc.toFixed(2))
@@ -32,7 +77,7 @@ export default function () {
         setResultReceive(receiveOutput)
 
     }
-    
+
     return (
         <div>
             <h1>PayPal Gebührenrechner</h1>
@@ -51,15 +96,15 @@ export default function () {
                 <input id='inputNum' type='number' ref={inputNumber} />
                 <label htmlFor='selectFeeRate'>Art der Zahlung</label>
                 <select name='feeRate' id='selectFeeRate' onChange={(e) => { setFeeRate(e.target.value) }} ref={inputFeeRate}>
-                    <option value="0">Waren oder Dienstleistungen bezahlen</option>
-                    <option value="1">Zahlung an Freunde und Familie</option>
-                    <option value="2">Spenden sammeln</option>
-                    <option value="3">Mikrozahlung</option>
-                    <option value="4">Zahlung mit QR-Code</option>
-                    <option value="5">{"Händlerkonditionen < 2.000 €"}</option>
-                    <option value="6">{"Händlerkonditionen 2.000 - 5.000 €"}</option>
-                    <option value="7">{"Händlerkonditionen 5.000 - 25.000 €"}</option>
-                    <option value="8">{"Händlerkonditionen > 25.000 €"}</option>
+                    <option value="0">{fee[0].Titel}</option>
+                    <option value="1">{fee[1].Titel}</option>
+                    <option value="2">{fee[2].Titel}</option>
+                    <option value="3">{fee[3].Titel}</option>
+                    <option value="4">{fee[4].Titel}</option>
+                    <option value="5">{fee[5].Titel}</option>
+                    <option value="6">{fee[6].Titel}</option>
+                    <option value="7">{fee[7].Titel}</option>
+                    <option value="8">{fee[8].Titel}</option>
                 </select>
             </form>
             <div>
