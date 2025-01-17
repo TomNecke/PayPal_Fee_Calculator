@@ -2,3 +2,12 @@
     border: none;
     display: flex;
 }
+h1 {
+    text-align: center;
+    border: solid;
+    border-radius: 1rem;
+    width: 50%;
+    height: 10%;
+    position: relative;
+    left: calc(50% - 25%);
+}

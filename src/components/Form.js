@@ -11,7 +11,7 @@ export default function Form() {
     const [receiveFee, setReceiveFee] = useState(0);
     const inputNumber = useRef(null);
     const inputFeeRate = useRef("0");
-    
+
     const fee = [
         {
             Titel: "Waren oder Dienstleistungen bezahlen",
@@ -63,7 +63,6 @@ export default function Form() {
     const handleSubmit = async (event) => {
         let input = Number.parseFloat(inputNumber.current.value)
 
-
         let sendFeeCalc = ((input / 100 * fee[inputFeeRate.current.value].Gebühr + fee[inputFeeRate.current.value].Festgebühr) * 100) / 100
         let sendOutput = (input - sendFeeCalc).toFixed(2)
 
@@ -75,9 +74,9 @@ export default function Form() {
         setResultSend(sendOutput)
         setResultReceive(receiveOutput)
 
-    } 
+    }
     return (
-        <div>
+        <div className='tab'>
             <h1>PayPal Gebührenrechner</h1>
             <form onChange={handleSubmit}>
                 <fieldset onChange={(e) => { setType(e.target.value) }} className='radioSendReceive'>
@@ -91,8 +90,8 @@ export default function Form() {
                     </div>
                 </fieldset>
                 <label htmlFor="inputNum">Betrag in €:</label>
-                <input id='inputNum' type='number'min="0.00" step="0.01" ref={inputNumber} />
-                
+                <input id='inputNum' type='number' min="0.00" step="0.01" ref={inputNumber} />
+
                 <label htmlFor='selectFeeRate'>Art der Zahlung</label>
                 <select name='feeRate' id='selectFeeRate' onChange={(e) => { setFeeRate(e.target.value) }} ref={inputFeeRate}>
                     <option value="0">{fee[0].Titel}</option>
@@ -114,7 +113,6 @@ export default function Form() {
                 </div>}
                 <p>Gebührenrate: {fee[feeRate].Gebühr} %</p>
                 <p>Festgebühr: {fee[feeRate].Festgebühr} €</p>
-                <h3>devInfo</h3>
             </div>
         </div>
     )
