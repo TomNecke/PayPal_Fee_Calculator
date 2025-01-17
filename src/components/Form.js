@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
 
 
-export default function () {
+export default function Form() {
 
     const [resultSend, setResultSend] = useState(0);
     const [resultReceive, setResultReceive] = useState(0);
@@ -111,8 +111,8 @@ export default function () {
             <div>
                 <h2>Ergebnis</h2>
                 {inputNumber.current && inputNumber.current.value && <div>
-                    {type == "sendRadio" ? <p>Betrag: {resultSend} €</p> : <p>Betrag: {resultReceive} €</p>}
-                    {type == "sendRadio" ? <p>Gebühren: {sendFee} €</p> : <p>Gebühren: {receiveFee} €</p>}
+                    {type === "sendRadio" ? <p>Betrag: {resultSend} €</p> : <p>Betrag: {resultReceive} €</p>}
+                    {type === "sendRadio" ? <p>Gebühren: {sendFee} €</p> : <p>Gebühren: {receiveFee} €</p>}
                 </div>}
                 <p>Gebührenrate: {fee[feeRate].Gebühr} %</p>
                 <p>Festgebühr: {fee[feeRate].Festgebühr} €</p>
