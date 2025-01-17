@@ -15,48 +15,49 @@ export default function () {
 
     const fee = [
         {
+            Titel: "Waren oder Dienstleistungen bezahlen",
             Gebühr: 2.49,
-            Festgebühr: 0.35,
-            Titel: "Waren oder Dienstleistungen bezahlen"
+            Festgebühr: 0.35
         },
         {
+            Titel: "Zahlung an Freunde und Familie",
             Gebühr: 0.00,
-            Festgebühr: 0.00,
-            Titel: "Zahlung an Freunde und Familie"
-        }, {
+            Festgebühr: 0.00
+        }, 
+        {
+            Titel: "Spenden sammeln",
             Gebühr: 1.50,
-            Festgebühr: 0.35,
-            Titel: "Spenden sammeln"
+            Festgebühr: 0.35
         },
         {
+            Titel: "Mikrozahlung",
             Gebühr: 10.00,
-            Festgebühr: 0.10,
-            Titel: "Mikrozahlung"
+            Festgebühr: 0.10
         },
         {
+            Titel: "Zahlung mit QR-Code",
             Gebühr: 0.90,
-            Festgebühr: 0.00,
-            Titel: "Zahlung mit QR-Code"
+            Festgebühr: 0.00
         },
         {
+            Titel: "Händlerkonditionen < 2.000 €",
             Gebühr: 2.49,
-            Festgebühr: 0.35,
-            Titel: "Händlerkonditionen < 2.000 €"
+            Festgebühr: 0.35
         },
         {
+            Titel: "Händlerkonditionen 2.000 - 5.000 €",
             Gebühr: 2.19,
-            Festgebühr: 0.35,
-            Titel: "Händlerkonditionen 2.000 - 5.000 €"
+            Festgebühr: 0.35
         },
         {
+            Titel: "Händlerkonditionen 5.000 - 25.000 €",
             Gebühr: 1.99,
-            Festgebühr: 0.35,
-            Titel: "Händlerkonditionen 5.000 - 25.000 €"
+            Festgebühr: 0.35
         },
         {
+            Titel: "Händlerkonditionen > 25.000 €",
             Gebühr: 1.49,
-            Festgebühr: 0.35,
-            Titel: "Händlerkonditionen > 25.000 €"
+            Festgebühr: 0.35
         }
     ]
 
