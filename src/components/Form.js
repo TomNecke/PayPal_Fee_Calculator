@@ -79,15 +79,13 @@ export default function Form() {
         <div className='tab'>
             <h1>PayPal Gebührenrechner</h1>
             <form onChange={handleSubmit}>
-                <fieldset onChange={(e) => { setType(e.target.value) }} className='radioSendReceive'>
-                    <div>
-                        <label htmlFor="sendRadio">Gebühren berechnen</label>
+                <fieldset className="chooseType" onChange={(e) => { setType(e.target.value) }} className='radioSendReceive'>
+                    <label htmlFor="sendRadio">Gebühren berechnen
                         <input type='radio' id='sendRadio' value="sendRadio" name='selectCalc' defaultChecked />
-                    </div>
-                    <div>
-                        <label htmlFor="receiveRadio">Endsumme berechnen</label>
+                    </label>
+                    <label htmlFor="receiveRadio">Endsumme berechnen
                         <input type='radio' id='receiveRadio' value="receiveRadio" name='selectCalc' />
-                    </div>
+                    </label>
                 </fieldset>
                 <label htmlFor="inputNum">Betrag in €:</label>
                 <input id='inputNum' type='number' min="0.00" step="0.01" ref={inputNumber} />
