@@ -1,5 +1,4 @@
 .radioSendReceive {
-    border: none;
     display: flex;
 }
 h1 {
@@ -9,15 +8,49 @@ h1 {
     border: solid;
     border-radius: 1rem;
     position: relative;
-    padding: 0.5rem;
+    height: 20%;
+    margin: 2rem;
+    font-size: 3rem;
 }
-form>fieldset>label {
+fieldset {
+    display: flex;
+    justify-content: space-evenly;
+    border: none;
+    margin: 2rem;
+}
+.chooseType>label {
     border: solid;
     border-radius: 0.5rem;
     padding: 0.5rem;
 }
-form>fieldset {
+#typeLabelOne {
+    color: red;
+}
+#sendRadio {
+    display: none;
+}
+#receiveRadio {
+    display: none;
+}
+.block {
+    border: solid;
     display: flex;
-    align-items: center;
     justify-content: space-evenly;
+    margin: 2rem;
+    border-radius: 1rem;
+    height: 60%;
+}
+form {
+    border: solid;
+    flex-grow: 1;
+    width: 20%;
+    margin: 2rem;
+    margin-right: 1rem;
+}
+.result {
+    border: solid;
+    flex-grow: 1;
+    width: 20%;
+    margin: 2rem;
+    margin-left: 1rem;
 }

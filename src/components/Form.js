@@ -11,6 +11,7 @@ export default function Form() {
     const [receiveFee, setReceiveFee] = useState(0);
     const inputNumber = useRef(null);
     const inputFeeRate = useRef("0");
+    const [typeStyle, setTypeStyle] = useState("sendRadio");
 
     const fee = [
         {
@@ -75,42 +76,55 @@ export default function Form() {
         setResultReceive(receiveOutput)
 
     }
+
+    const chooseType = (e) => {
+        if(e.target.id == "sendRadio") {
+            document.getElementById("typeLabelOne").style.color = "red";
+            document.getElementById("typeLabelTwo").style.color = "white";
+        } else {
+            document.getElementById("typeLabelTwo").style.color = "red";
+            document.getElementById("typeLabelOne").style.color = "white";
+        }
+    }
     return (
         <div className='tab'>
             <h1>PayPal Gebührenrechner</h1>
-            <form onChange={handleSubmit}>
-                <fieldset className="chooseType" onChange={(e) => { setType(e.target.value) }} className='radioSendReceive'>
-                    <label htmlFor="sendRadio">Gebühren berechnen
-                        <input type='radio' id='sendRadio' value="sendRadio" name='selectCalc' defaultChecked />
-                    </label>
-                    <label htmlFor="receiveRadio">Endsumme berechnen
-                        <input type='radio' id='receiveRadio' value="receiveRadio" name='selectCalc' />
-                    </label>
-                </fieldset>
-                <label htmlFor="inputNum">Betrag in €:</label>
-                <input id='inputNum' type='number' min="0.00" step="0.01" ref={inputNumber} />
-
-                <label htmlFor='selectFeeRate'>Art der Zahlung</label>
-                <select name='feeRate' id='selectFeeRate' onChange={(e) => { setFeeRate(e.target.value) }} ref={inputFeeRate}>
-                    <option value="0">{fee[0].Titel}</option>
-                    <option value="1">{fee[1].Titel}</option>
-                    <option value="2">{fee[2].Titel}</option>
-                    <option value="3">{fee[3].Titel}</option>
-                    <option value="4">{fee[4].Titel}</option>
-                    <option value="5">{fee[5].Titel}</option>
-                    <option value="6">{fee[6].Titel}</option>
-                    <option value="7">{fee[7].Titel}</option>
-                    <option value="8">{fee[8].Titel}</option>
-                </select>
-            </form>
-            <div>
-                <h2>Ergebnis</h2>
-                {inputNumber.current && inputNumber.current.value && <div>
-                    {type === "sendRadio" ? <p>Betrag: {resultSend} €</p> : <p>Betrag: {resultReceive} €</p>}
-                    {type === "sendRadio" ? <p>Gebühren: {sendFee} €</p> : <p>Gebühren: {receiveFee} €</p>}
-                </div>}
-                <p>Gebührenrate: {fee[feeRate].Gebühr} %</p>
-                <p>Festgebühr: {fee[feeRate].Festgebühr} €</p>
+                    <fieldset className="chooseType" onChange={(e) => { setType(e.target.value) }} >
+                        <label htmlFor="sendRadio" id='typeLabelOne'>Gebühren berechnen
+                            <input type='radio' id='sendRadio' value="sendRadio" name='selectCalc' onChange={chooseType} defaultChecked />
+                        </label>
+                        <label htmlFor="receiveRadio" id='typeLabelTwo' >Endsumme berechnen
+                            <input type='radio' id='receiveRadio' value="receiveRadio" name='selectCalc' onChange={chooseType} />
+                        </label>
+                    </fieldset>
+            <div className='block'>
+                <form onChange={handleSubmit}>
+                    <div id='inputBox'>
+                        <label htmlFor="inputNum">Betrag in €:</label>
+                        <input id='inputNum' type='number' min="0.00" step="0.01" ref={inputNumber} />
+                    </div>
+                    <label htmlFor='selectFeeRate'>Art der Zahlung</label>
+                    <select name='feeRate' id='selectFeeRate' onChange={(e) => { setFeeRate(e.target.value) }} ref={inputFeeRate}>
+                        <option value="0">{fee[0].Titel}</option>
+                        <option value="1">{fee[1].Titel}</option>
+                        <option value="2">{fee[2].Titel}</option>
+                        <option value="3">{fee[3].Titel}</option>
+                        <option value="4">{fee[4].Titel}</option>
+                        <option value="5">{fee[5].Titel}</option>
+                        <option value="6">{fee[6].Titel}</option>
+                        <option value="7">{fee[7].Titel}</option>
+                        <option value="8">{fee[8].Titel}</option>
+                    </select>
+                </form>
+                <div className='result'>
+                    <h2>Ergebnis</h2>
+                    {inputNumber.current && inputNumber.current.value && <div>
+                        {type === "sendRadio" ? <p>Betrag: {resultSend} €</p> : <p>Betrag: {resultReceive} €</p>}
+                        {type === "sendRadio" ? <p>Gebühren: {sendFee} €</p> : <p>Gebühren: {receiveFee} €</p>}
+                    </div>}
+                    <p>Gebührenrate: {fee[feeRate].Gebühr} %</p>
+                    <p>Festgebühr: {fee[feeRate].Festgebühr} €</p>
+                </div>
             </div>
         </div>
     )
