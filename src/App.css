@@ -18,7 +18,6 @@ fieldset {
     display: flex;
     justify-content: space-evenly;
     border: none;
-    margin: 2rem;
 }
 .chooseType>label {
     border: solid;
