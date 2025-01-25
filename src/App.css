@@ -9,7 +9,9 @@ h1 {
     border-radius: 1rem;
     position: relative;
     height: 20%;
-    margin: 2rem;
+    margin: 4rem;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
     font-size: 3rem;
 }
 fieldset {
@@ -33,24 +35,40 @@ fieldset {
     display: none;
 }
 .block {
-    border: solid;
     display: flex;
     justify-content: space-evenly;
     margin: 2rem;
     border-radius: 1rem;
     height: 60%;
+    font-size: 2rem;
 }
 form {
-    border: solid;
     flex-grow: 1;
     width: 20%;
     margin: 2rem;
     margin-right: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items:center ;
+    border: solid;
+    border-radius: 1rem;
 }
 .result {
-    border: solid;
     flex-grow: 1;
     width: 20%;
     margin: 2rem;
     margin-left: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items:center ;
+    border: solid;
+    border-radius: 1rem;
+}
+#inputNum {
+    font-size: 2rem;
+}
+#selectFeeRate {
+    font-size: 1.5rem;
 }

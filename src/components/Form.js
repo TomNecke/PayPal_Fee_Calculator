@@ -100,10 +100,9 @@ export default function Form() {
             <div className='block'>
                 <form onChange={handleSubmit}>
                     <div id='inputBox'>
-                        <label htmlFor="inputNum">Betrag in €:</label>
+                        <label htmlFor="inputNum">Betrag in € : </label>
                         <input id='inputNum' type='number' min="0.00" step="0.01" ref={inputNumber} />
                     </div>
-                    <label htmlFor='selectFeeRate'>Art der Zahlung</label>
                     <select name='feeRate' id='selectFeeRate' onChange={(e) => { setFeeRate(e.target.value) }} ref={inputFeeRate}>
                         <option value="0">{fee[0].Titel}</option>
                         <option value="1">{fee[1].Titel}</option>
@@ -122,8 +121,10 @@ export default function Form() {
                         {type === "sendRadio" ? <p>Betrag: {resultSend} €</p> : <p>Betrag: {resultReceive} €</p>}
                         {type === "sendRadio" ? <p>Gebühren: {sendFee} €</p> : <p>Gebühren: {receiveFee} €</p>}
                     </div>}
-                    <p>Gebührenrate: {fee[feeRate].Gebühr} %</p>
-                    <p>Festgebühr: {fee[feeRate].Festgebühr} €</p>
+                    <div>
+                        <p>Gebührenrate: {fee[feeRate].Gebühr} %</p>
+                        <p>Festgebühr: {fee[feeRate].Festgebühr} €</p>
+                    </div>
                 </div>
             </div>
         </div>
